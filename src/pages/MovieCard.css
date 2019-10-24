@@ -1,0 +1,31 @@
+#card {
+  display: flex;
+  margin: 20px 0;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+#poster img {
+  margin: 0 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 1px 0 gray;
+}
+
+#info {
+  width: 600px;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 0 1px 0 gray;
+}
+
+#info table {
+  border-collapse: collapse;
+}
+
+#info table td {
+  padding: 10px;
+}
+
+.tag {
+  font-weight: bold;
+}

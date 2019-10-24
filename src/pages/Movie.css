@@ -1,0 +1,12 @@
+#search {
+  background: #f7f7f7;
+  box-shadow: 0 0 2px 0 gray;
+}
+
+#search input[type="text"] {
+  padding: 8px 15px;
+  font-size: 18px;
+  border: 0;
+  width: 98%;
+  height: 40px;
+}
