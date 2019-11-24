@@ -1,8 +1,9 @@
 // react import
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 
 // local import
-import api from './../services/api';
+import api from './../../services/api';
 import Card from './MovieCard';
 
 // style import
@@ -39,7 +40,16 @@ export interface IMovie {
 
 const Movie: React.FC = () => {
   const [movie, setMovie] = useState<IMovie>();
-  const [title, setTitle] = useState('');
+  let { name } = useParams();
+  const [title, setTitle] = useState(name ? name : '');
+
+  useEffect(() => {
+    document.title = 'Search Movie';
+  }, []);
+
+  if (title !== '') {
+    getMovie();
+  }
 
   let imovie: IMovie = {
     Title: '',
@@ -69,8 +79,7 @@ const Movie: React.FC = () => {
     Response: false
   }
 
-  async function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
+  async function getMovie() {
 
     const params = {
       t: title
@@ -84,16 +93,16 @@ const Movie: React.FC = () => {
       Rated: data.Rated,
       Realeased: data.Released,
       Runtime: data.Runtime,
-      Genre: data.Genre.split(','),
+      Genre: data.Genre ? data.Genre.split(',') : [],
       Director: data.Director,
-      Writer: data.Writer.split(','),
-      Actors: data.Actors.split(','),
+      Writer: data.Writer ? data.Writer.split(',') : [],
+      Actors: data.Actors ? data.Actors.split(',') : [],
       Plot: data.Plot,
-      Language: data.Language.split(','),
+      Language: data.Language ? data.Language.split(',') : [],
       Country: data.Country,
       Awards: data.Awards,
       Poster: data.Poster,
-      Ratings: data.Ratings,
+      Ratings: data.Ratings ? data.Ratings : [],
       Metascore: parseInt(data.Metascore),
       imdbRating: data.imdbRating,
       imdbVotes: data.imdbVotes,
@@ -107,6 +116,11 @@ const Movie: React.FC = () => {
     }
 
     setMovie(imovie);
+  }
+
+  function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    getMovie();
   }
 
   return (
@@ -123,7 +137,7 @@ const Movie: React.FC = () => {
         </form>
       </div>
 
-      {movie ? (<Card imovie={movie} />) : (<></>)}
+      {movie !== undefined ? (<Card imovie={movie} />) : (<></>)}
     </>
   );
 }
