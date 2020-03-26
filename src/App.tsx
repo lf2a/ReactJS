@@ -3,10 +3,6 @@ import React from 'react';
 import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
 
 // local import
-<<<<<<< HEAD
-import Index from './pages/spa/Index';
-import Movie from './pages/movie/Movie';
-=======
 import Index from './pages/example_1/Index';
 import Param from './pages/example_2/Param';
 import HookOne from './pages/example_hooks/HookOne';
@@ -17,18 +13,10 @@ import Movie from './pages/movie/Movie';
 const stylesheet: Object = {
   backgroundColor: '#f7f7f7',
 }
->>>>>>> ff4e764f2f5bde3cfcdd31b9ac90976d4119b0f8
 
 const App: React.FC = () => {
   return (
     <BrowserRouter>
-<<<<<<< HEAD
-      <Switch>
-        <Route path="/" exact component={Index} />
-        <Route path="/movie" exact component={Movie} />
-        <Route path="/movie/:name" component={Movie} />
-      </Switch>
-=======
       <div>
 
         <ul style={stylesheet}>
@@ -78,7 +66,6 @@ const App: React.FC = () => {
           </Route>
         </Switch>
       </div>
->>>>>>> ff4e764f2f5bde3cfcdd31b9ac90976d4119b0f8
     </BrowserRouter>
   );
 }
